@@ -48,7 +48,7 @@ export default function ServerListLayout({ children }) {
       const { protocol, hostname } = window.location;
       const serverUrl = process.env.NEXT_PUBLIC_SERVER_PORT ?
         // `${protocol}//${hostname}:${process.env.NEXT_PUBLIC_SERVER_PORT}` :
-        process.env.NEXT_PUBLIC_WEBSOCKET_URL :
+        process.env.NEXT_PUBLIC_SERVER_URL :
         "http://localhost:3040";
 
       try {
