@@ -1,0 +1,116 @@
+.chatHeader {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0 0 0;
+
+  &:hover {
+    background-color: rgb(46, 46, 52);
+
+    span {
+      background-color: rgb(46, 46, 52);
+    }
+  }
+
+  .profile {
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    margin: 3px 0 0 17px;
+    border: none;
+    border-radius: 70%;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &NoAvatar {
+      position: absolute;
+      width: 36px;
+      height: 36px;
+      margin: 3px 0 0 17px;
+      border: none;
+      border-radius: 70%;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .userName {
+    display: flex;
+    padding: 0 0 0 70px;
+
+    .name {
+      // color: rgb(219, 222, 225);
+      color: chartreuse;
+    }
+
+    .time {
+      display: flex;
+      align-items: flex-end;
+      margin: 0 0 0 8px;
+      color: rgb(150, 150, 160);
+      font-size: 11px;
+
+    }
+  }
+}
+
+.chat {
+  display: flex;
+  // padding: 0 0 0 70px;
+  // margin: 1px 0 1px 0;
+  color: rgb(219, 222, 225);
+
+  &:hover {
+    background-color: rgb(46, 46, 52);
+
+    .chatTime {
+      visibility: visible;
+    }
+
+    span {
+      background-color: rgb(46, 46, 52);
+    }
+  }
+
+  .chatTime {
+    display: flex;
+    justify-content: center;
+    // padding: 4px;
+    width: 70px;
+    height: 26px;
+    font-size: 10px;
+    color: rgb(190, 190, 195);
+    visibility: hidden;
+
+    span {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
+    flex: 1 0 auto;
+    // height: 26px;
+    padding: 3px;
+    font-size: 14px;
+    align-items: center;
+
+    img {
+      border-radius: 10px;
+      max-width: 550px;
+      max-height: 350px;
+    }
+  }
+}

@@ -1,0 +1,149 @@
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: rotateX(180deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
+}
+
+.loginForm {
+  display: flex;
+  justify-content: center;
+  width: 784px;
+  padding: 30px;
+  border-radius: 5px;
+  background-color: rgb(44, 44, 44);
+  opacity: 1;
+  transition: all 0.2s;
+  animation: fadeIn 0.5s;
+  // -webkit-user-select: none;
+  // -moz-user-select: none;
+  // -ms-user-select: none;
+  // user-select: none;
+
+  span {
+    color: rgb(193, 193, 193);
+    font-size: 14px;
+  }
+
+  .titleWrapper {
+    .maintitleWrapper {
+      height: 40px;
+
+      h1 {
+        margin: 0;
+        text-align: center;
+        font-size: 26px;
+        color: rgb(242, 243, 245);
+      }
+
+
+    }
+
+    .subtitleWrapper {
+      display: flex;
+      justify-content: center;
+      height: 20px;
+
+      span {
+        margin: 0 auto;
+      }
+    }
+  }
+
+  .loginBox {
+    flex: 5;
+    display: flex;
+    padding-bottom: 20px;
+    justify-content: baseline;
+    width: 100%;
+    flex-direction: column;
+    border-radius: 5px;
+    // background-color: red;
+
+    .descWrapper {
+      margin-top: 15px;
+      margin-bottom: 7px;
+
+      span {
+        font-size: 12px;
+        font-weight: 600;
+      }
+    }
+
+    .inputWrapper {
+      padding: 10px;
+      // height: 30px;
+      border-radius: 3px;
+      // width: 400px;
+      background-color: rgb(28, 28, 28);
+
+      input {
+        width: 100%;
+        border: 0px;
+        background-color: transparent;
+        font-size: 15px;
+        color: rgb(193, 193, 193);
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    .findPassword {
+      font-size: 14px;
+      margin-top: 3px;
+      color: cornflowerblue;
+    }
+
+    .login {
+      margin-top: 20px;
+      margin-bottom: 10px;
+
+      button {
+        width: 100%;
+        height: 45px;
+        border: 0px;
+        border-radius: 5px;
+        color: white;
+        font-size: 16px;
+        font-weight: 500;
+        background-color: rgb(88, 101, 242);
+        transition: all 0.2s;
+
+        &:hover {
+          cursor: pointer;
+          background-color: rgb(71, 82, 196);
+        }
+      }
+    }
+
+    // .register {
+    //   margin-bottom: 15px;
+    // }
+
+    a {
+      margin-left: 3px;
+      font-size: 14px;
+      color: rgb(0, 168, 252);
+      text-decoration-line: none;
+
+      &:hover {
+        text-decoration-line: underline;
+      }
+    }
+  }
+
+  .marginBox {
+    flex: 1;
+  }
+
+  .qrBox {
+    flex: 3;
+  }
+}

@@ -1,0 +1,99 @@
+.RegisterForm {
+  display: flex;
+  justify-content: center;
+  width: 400px;
+  padding: 30px;
+  border-radius: 5px;
+  background-color: rgb(44, 44, 44);
+  // -webkit-user-select: none;
+  // -moz-user-select: none;
+  // -ms-user-select: none;
+  // user-select: none;
+
+  span {
+    color: rgb(193, 193, 193);
+    font-size: 14px;
+  }
+
+  .titleWrapper {
+    .maintitleWrapper {
+      height: 50px;
+      text-align: center;
+
+      h1 {
+        color: white;
+        font-size: 24px;
+        margin: 0;
+      }
+    }
+
+  }
+
+  .RegisterBox {
+    flex: 5;
+    display: flex;
+    padding-bottom: 20px;
+    justify-content: baseline;
+    width: 100%;
+    flex-direction: column;
+    border-radius: 5px;
+    // background-color: red;
+
+    .termsBox {
+      span {
+        font-size: 12px;
+        font-weight: 300;
+      }
+    }
+
+    .toLogin {
+      font-size: 14px;
+      margin-top: 20px;
+      color: cornflowerblue;
+    }
+
+    .registerButton {
+      margin-top: 20px;
+      margin-bottom: 5px;
+
+      button {
+        width: 100%;
+        height: 45px;
+        border: 0px;
+        border-radius: 5px;
+        color: white;
+        font-size: 16px;
+        font-weight: 500;
+        background-color: rgb(88, 101, 242);
+        transition: all 0.2s;
+
+        &:hover {
+          cursor: pointer;
+          background-color: rgb(71, 82, 196);
+        }
+      }
+    }
+
+    // .register {
+    //   margin-bottom: 15px;
+    // }
+
+    a {
+      font-size: 14px;
+      color: rgb(0, 168, 252);
+      text-decoration-line: none;
+
+      &:hover {
+        text-decoration-line: underline;
+      }
+    }
+  }
+
+  .marginBox {
+    flex: 1;
+  }
+
+  .qrBox {
+    flex: 3;
+  }
+}

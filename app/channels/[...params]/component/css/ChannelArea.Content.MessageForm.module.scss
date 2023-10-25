@@ -1,0 +1,70 @@
+.messageForm {
+  display: flex;
+  height: 90px;
+  background-color: rgb(49, 51, 56);
+  padding: 10px 20px 0 20px;
+
+  .textArea {
+    display: flex;
+    flex: 1 0 auto;
+    height: 40px;
+    background-color: rgb(56, 58, 64);
+    border-radius: 5px;
+    align-items: center;
+
+    .uploadArea {
+      position: relative;
+      display: flex;
+      width: 30px;
+      height: 100%;
+      padding-left: 15px;
+
+      input {
+        cursor: pointer;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        font-size: 0px;
+
+      }
+
+      .uploadButton {
+        width: 24px;
+        fill: rgb(181, 186, 193);
+
+        &:hover {
+          cursor: pointer;
+          fill: rgb(219, 222, 225);
+        }
+      }
+    }
+
+    .inputArea {
+      flex: 1 0 auto;
+      height: 100%;
+      // padding: 10px;
+
+      input {
+        width: 100%;
+        border: 0px;
+        margin: 10px;
+        background-color: transparent;
+        font-size: 15px;
+        color: rgb(193, 193, 193);
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    .buttonArea {
+      width: 100px;
+      height: 100%;
+    }
+
+  }
+}

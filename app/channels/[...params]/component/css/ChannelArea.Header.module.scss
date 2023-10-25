@@ -1,0 +1,52 @@
+.header {
+  display: flex;
+  height: 50px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: rgb(49, 51, 56);
+
+  .channelTitle {
+    display: flex;
+    align-items: center;
+    flex: 1 0 auto;
+
+    .icon {
+      width: 24px;
+      height: 24px;
+      margin-left: 7px;
+      margin-right: 7px;
+      fill: rgb(159, 165, 177);
+    }
+
+    h2 {
+      flex: 1 0 auto;
+      font-size: 16px;
+      color: azure;
+    }
+  }
+
+  .toolbar {
+    display: flex;
+    // width: 400px;
+
+    .iconTool {
+      width: 24px;
+      height: 24px;
+    }
+
+    .searchArea {
+      display: flex;
+      width: 144px;
+      height: 24px;
+
+      input {
+        border: 0px;
+      }
+
+      .iconSearch {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}

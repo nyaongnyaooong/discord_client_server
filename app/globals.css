@@ -1,0 +1,45 @@
+* {
+  box-sizing: border-box;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
+
+a:-webkit-any-link {
+  color: black;
+  text-decoration: none;
+}
+
+html {
+  height: 100%;
+  margin: 0;
+  /* 인터넷 익스플로러 스크롤바 삭제*/
+  -ms-overflow-style: none;
+  /* 파이어폭스 스크롤바 삭제*/
+  scrollbar-width: none;
+}
+
+/* ( 크롬, 사파리, 오페라, 엣지 ) 스크롤바 삭제 */
+html::-webkit-scrollbar {
+  display: none;
+}
+
+
+
+body {
+  height: 100%;
+  margin: 0;
+}

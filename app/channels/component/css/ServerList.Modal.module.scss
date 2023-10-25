@@ -1,0 +1,856 @@
+@keyframes popUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100px)
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: translateY(-15px)
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0px)
+  }
+}
+
+.modalRoot {
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+
+  .bgDark {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .modalCreate {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    width: 440px;
+    border-radius: 5px;
+    background-color: white;
+    transition: all 0.2s;
+    animation: popUp 0.3s;
+
+    .titleArea {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+
+      .title {
+        h1 {
+          font-size: 24px;
+          margin: 0;
+        }
+      }
+
+      .subtitle {
+        h3 {
+          font-size: 16px;
+          margin: 5px 0 10px 0;
+          font-weight: 400;
+
+        }
+
+      }
+    }
+
+    .itemSelect {
+      $highlightColor: rgb(210, 210, 220);
+      display: flex;
+      align-items: center;
+      margin: 0 15px 10px 15px;
+      padding: 12px 5px 12px 12px;
+      border-radius: 5px;
+      border: 1px solid $highlightColor;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $highlightColor;
+      }
+
+      span {
+        flex: 1 0 auto;
+        font-weight: 600;
+      }
+
+      .iconArrow {
+        width: 32px;
+        height: 32px;
+        transform: rotate(-90deg);
+      }
+
+    }
+
+    .joinArea {
+      display: flex;
+      flex-direction: column;
+      padding: 15px;
+      background-color: rgb(245, 245, 255);
+
+      h2 {
+        text-align: center;
+        margin: 0 0 10px 0;
+        font-size: 18px;
+      }
+
+      button {
+        background-color: rgb(110, 110, 120);
+        font-size: 14px;
+        color: white;
+        border: 0;
+        border-radius: 5px;
+        padding: 8px;
+
+        &:hover {
+          cursor: pointer;
+          background-color: rgb(90, 90, 100);
+        }
+      }
+    }
+
+    .uploadArea {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 15px;
+
+      .iconWrapper {
+        position: relative;
+        width: 80px;
+        height: 80px;
+
+        .iconUpload {
+          width: 80px;
+          height: 80px;
+        }
+
+        input {
+          cursor: pointer;
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          font-size: 0px;
+
+        }
+      }
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+
+      .nameForm {
+        display: flex;
+        flex-direction: column;
+        padding: 0 15px 0 15px;
+
+        span {
+          font-size: 12px;
+          margin-bottom: 5px;
+        }
+
+        input {
+          border: 0;
+          border-radius: 5px;
+          padding: 10px 10px 10px 10px;
+          background-color: rgb(230, 230, 230);
+          font-size: 16px;
+
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+
+      .createButtonArea {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px;
+        margin-top: 30px;
+        background-color: rgb(245, 245, 255);
+
+        button {
+          border: 0;
+          border-radius: 5px;
+          background-color: rgb(230, 230, 230);
+          // background-color: white;
+          padding: 10px 16px 10px 16px;
+          font-size: 14px;
+
+          &.create {
+            color: white;
+            background-color: rgb(90, 100, 240);
+            padding: 10px 25px 10px 25px;
+
+            &:hover {
+              cursor: pointer;
+              background-color: rgb(70, 80, 220);
+
+            }
+          }
+
+          &:hover {
+            cursor: pointer;
+
+          }
+        }
+      }
+    }
+
+  }
+
+  .modalSetServer {
+    position: absolute;
+    display: flex;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    color: rgb(181, 186, 193);
+    z-index: 1;
+
+    .divineLine {
+      width: 100%;
+      height: 1px;
+      background-color: rgb(65, 65, 70);
+      margin: 40px 0 40px 0;
+    }
+
+    .list {
+      min-width: 215px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      flex: 1 auto;
+      background-color: rgb(43, 45, 49);
+      overflow-y: scroll;
+      overflow-x: hidden;
+      padding: 60px 10px 0 0;
+
+      &::-webkit-scrollbar {
+        width: 8px;
+        border-radius: 5px;
+        background-color: rgb(44, 44, 46);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        // border: 1px solid rgb(105, 105, 110);
+        border-radius: 5px;
+        background-color: rgb(27, 27, 32);
+      }
+
+      .itemTitle {
+        display: flex;
+        align-items: center;
+        padding: 0 0 0 3px;
+        width: 192px;
+        height: 32px;
+        font-size: 12px;
+      }
+
+      .item {
+        display: flex;
+        align-items: center;
+        border-radius: 5px;
+        padding: 0 0 0 3px;
+        width: 192px;
+        height: 32px;
+
+        &:hover {
+          background-color: rgb(60, 60, 65);
+        }
+      }
+    }
+
+    .content {
+      min-width: 700px;
+      background-color: rgb(49, 51, 56);
+      overflow-y: scroll;
+      overflow-x: hidden;
+      padding: 60px 40px 0 40px;
+
+      &::-webkit-scrollbar {
+        width: 8px;
+        border-radius: 5px;
+        background-color: rgb(44, 44, 46);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        // border: 1px solid rgb(105, 105, 110);
+        border-radius: 5px;
+        background-color: rgb(27, 27, 32);
+      }
+
+      h2 {
+        color: aliceblue;
+        font-size: 20px;
+      }
+
+      .profileCard {
+        position: relative;
+
+        .banner {
+          height: 100px;
+          background-color: royalblue;
+          border-top-left-radius: 5px;
+          border-top-right-radius: 5px;
+        }
+
+        .userTitle {
+          display: flex;
+          justify-content: space-between;
+          background-color: rgb(28, 28, 32);
+          padding: 20px 20px 20px 120px;
+
+          .avatar {
+            position: absolute;
+            top: 80px;
+            left: 15px;
+
+            .imageWrapper {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 95px;
+              height: 95px;
+              border-radius: 70%;
+              background-color: rgb(28, 28, 32);
+
+              .image {
+                width: 80px;
+                height: 80px;
+                border-radius: 70%;
+                overflow: hidden;
+
+                img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                }
+
+
+              }
+            }
+
+            .userStatusWrapper {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              position: absolute;
+              bottom: 0px;
+              right: 0px;
+              width: 28px;
+              height: 28px;
+              background-color: rgb(28, 28, 32);
+              border-radius: 70%;
+
+              .userStatus {
+
+                width: 16px;
+                height: 16px;
+                border-radius: 70%;
+                background-color: rgb(35, 164, 90);
+              }
+            }
+
+
+
+          }
+
+          .nickname {
+            font-size: 20px;
+            font-weight: 800;
+            color: white;
+          }
+
+          .buttonArea {
+            .button {
+              color: white;
+              background-color: royalblue;
+              font-size: 15px;
+              padding: 3px;
+            }
+          }
+        }
+
+        .userInfo {
+          padding: 15px;
+          background-color: rgb(30, 30, 34);
+          border-bottom-left-radius: 5px;
+          border-bottom-right-radius: 5px;
+
+          .info {
+            background-color: rgb(45, 45, 49);
+            padding: 15px;
+
+
+            .nickname {
+              display: flex;
+
+              .textArea {
+                display: flex;
+                flex-direction: column;
+
+                span {
+                  display: flex;
+                }
+              }
+            }
+
+            .email {
+              display: flex;
+
+              .textArea {
+                display: flex;
+                flex-direction: column;
+              }
+            }
+          }
+        }
+      }
+
+      .password {
+        display: flex;
+
+        .buttonUpdatePassword {
+          padding: 5px 15px 5px 15px;
+          background-color: royalblue;
+          color: white;
+          border-radius: 3px;
+          font-size: 16px;
+          font-weight: 400;
+
+          &:hover {
+            cursor: pointer;
+            background-color: rgb(80, 129, 217);
+          }
+        }
+      }
+
+      .setProfile {
+        display: flex;
+        flex-direction: row;
+
+        .text {
+          font-size: 12px;
+          font-weight: 600;
+          margin: 0 0 10px 0;
+        }
+
+        .setArea {
+          display: flex;
+          flex: 5;
+          flex-direction: column;
+          padding: 0 15px 0 0;
+
+          .item {
+            margin: 0 0 20px 0;
+
+            input {
+              padding: 0 0 0 7px;
+              height: 40px;
+              border-radius: 3px;
+              border: 0;
+              width: 100%;
+              background-color: rgb(28, 28, 32);
+              color: rgb(181, 186, 193);
+              font-size: 16px;
+
+              &:focus {
+                outline: none;
+              }
+            }
+
+            .buttonArea {
+              display: flex;
+
+              .buttonChange {
+                position: relative;
+                padding: 5px 15px 5px 15px;
+                background-color: royalblue;
+                color: white;
+                border-radius: 3px;
+                font-size: 16px;
+                font-weight: 400;
+
+                input {
+                  cursor: pointer;
+                  position: absolute;
+                  top: 0px;
+                  left: 0px;
+                  width: 100%;
+                  height: 100%;
+                  opacity: 0;
+                  font-size: 0px;
+                }
+
+                &:hover {
+                  cursor: pointer;
+                  background-color: rgb(80, 129, 217);
+                }
+              }
+            }
+          }
+        }
+
+        .previewArea {
+          display: flex;
+          flex: 6;
+          flex-direction: column;
+          padding: 0 0 0 15px;
+
+          .profileCard2 {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+
+            .avatar {
+              position: absolute;
+              top: 15px;
+              left: 15px;
+
+              .imageWrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 85px;
+                height: 85px;
+                border-radius: 70%;
+                background-color: rgb(45, 45, 49);
+
+                .image {
+                  width: 70px;
+                  height: 70px;
+                  border-radius: 70%;
+                  overflow: hidden;
+
+                  img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                  }
+                }
+              }
+
+              .userStatusWrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                bottom: 0px;
+                right: 0px;
+                width: 28px;
+                height: 28px;
+                background-color: rgb(45, 45, 49);
+                border-radius: 70%;
+
+                .userStatus {
+                  width: 16px;
+                  height: 16px;
+                  border-radius: 70%;
+                  background-color: rgb(35, 164, 90);
+                }
+              }
+            }
+
+            .banner {
+              height: 60px;
+              background-color: royalblue;
+              border-top-left-radius: 5px;
+              border-top-right-radius: 5px;
+            }
+
+            .underBanner {
+              background-color: rgb(45, 45, 49);
+              padding: 65px 15px 15px 15px;
+              border-bottom-left-radius: 5px;
+              border-bottom-right-radius: 5px;
+
+              .userInfoArea {
+                display: flex;
+                flex-direction: column;
+                background-color: rgb(28, 28, 32);
+                padding: 10px;
+                border-radius: 5px;
+
+                .nicknameArea {
+                  font-size: 20px;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .saveArea {
+        display: flex;
+        align-items: center;
+        background-color: rgb(30, 30, 34);
+        border-radius: 5px;
+        padding: 10px;
+        margin: 20px 0 20px 0;
+
+        .textArea {
+          flex: 1 0 auto;
+        }
+
+        .buttonArea {
+          display: flex;
+
+          .buttonUndo {
+            padding: 5px 15px 5px 15px;
+            background-color: rgb(28, 28, 32);
+            color: white;
+            border-radius: 3px;
+            margin: 0 10px 0 0;
+
+            &:hover {
+              cursor: pointer;
+              background-color: rgb(45, 45, 49);
+            }
+          }
+
+          .buttonSave {
+            padding: 5px 15px 5px 15px;
+            background-color: rgb(35, 164, 90);
+            color: white;
+            border-radius: 3px;
+
+            &:hover {
+              cursor: pointer;
+
+              background-color: rgb(15, 144, 70);
+            }
+          }
+        }
+      }
+    }
+
+    .close {
+      min-width: 60px;
+      display: flex;
+      justify-content: left;
+      flex: 1 auto;
+      background-color: rgb(49, 51, 56);
+      padding: 60px 0 0 15px;
+
+      .button {
+        display: flex;
+        flex-direction: column;
+
+        .buttonImage {
+          &:hover {
+            cursor: pointer;
+
+            .buttonCircle {
+              border: 2px solid rgb(220, 220, 225);
+
+              svg {
+                width: 36px;
+                fill: rgb(220, 220, 225);
+
+              }
+            }
+          }
+
+          .buttonCircle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 36px;
+            height: 36px;
+            border: 2px solid rgb(181, 186, 193);
+            border-radius: 70%;
+
+            svg {
+              width: 18px;
+              height: 18px;
+              fill: rgb(181, 186, 193);
+            }
+          }
+        }
+
+        .buttonText {
+          display: flex;
+          justify-content: center;
+          margin: 5px 0 0 0;
+
+          span {
+            color: rgb(181, 186, 193);
+            font-size: 12px;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+
+  .content {
+
+    .setServerProfile {
+      display: flex;
+
+      .setAvatar {
+        display: flex;
+
+        .preViewArea {
+          position: relative;
+
+          .inputArea {
+            width: 100px;
+
+
+            .inputWrapper {
+              border-radius: 70%;
+              width: 100px;
+              height: 100px;
+              background-color: rgb(28, 28, 32);
+              overflow: hidden;
+
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+              }
+
+              input {
+                cursor: pointer;
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                font-size: 0px;
+              }
+            }
+          }
+
+        }
+
+        .explainArea {
+          display: flex;
+          flex-direction: column;
+
+          .textArea {
+            margin: 0 0 5px 20px;
+            width: 170px;
+
+            span {
+              font-size: 13px;
+              display: block;
+            }
+          }
+
+          .buttonArea {
+            display: flex;
+            margin: 15px 15px 15px 20px;
+
+            .buttonUpload {
+              border: 1px solid rgb(181, 186, 193);
+              border-radius: 3px;
+              padding: 5px 12px 7px 12px;
+              color: aliceblue;
+              font-size: 13px;
+            }
+          }
+        }
+      }
+
+      .setName {
+        display: flex;
+        flex: 1 1 auto;
+        margin: 0 0 0 20px;
+
+        .item {
+          display: flex;
+          width: 100%;
+          flex-direction: column;
+
+          .text {
+            font-size: 12px;
+            margin: 0 0 5px 0;
+          }
+
+          input {
+            padding: 0 0 0 7px;
+            height: 40px;
+            border-radius: 3px;
+            border: 0;
+            width: 100%;
+            background-color: rgb(28, 28, 32);
+            color: rgb(181, 186, 193);
+            font-size: 16px;
+
+            &:focus {
+              outline: none;
+            }
+          }
+        }
+      }
+
+
+    }
+
+    .saveArea {
+      display: flex;
+      align-items: center;
+      background-color: rgb(30, 30, 34);
+      border-radius: 5px;
+      padding: 10px;
+      margin: 20px 0 20px 0;
+
+      .textArea {
+        flex: 1 0 auto;
+      }
+
+      .buttonArea {
+        display: flex;
+
+        .buttonUndo {
+          padding: 5px 15px 5px 15px;
+          background-color: rgb(28, 28, 32);
+          color: white;
+          border-radius: 3px;
+          margin: 0 10px 0 0;
+
+          &:hover {
+            cursor: pointer;
+            background-color: rgb(45, 45, 49);
+          }
+        }
+
+        .buttonSave {
+          padding: 5px 15px 5px 15px;
+          background-color: rgb(35, 164, 90);
+          color: white;
+          border-radius: 3px;
+
+          &:hover {
+            cursor: pointer;
+
+            background-color: rgb(15, 144, 70);
+          }
+        }
+      }
+    }
+  }
+}

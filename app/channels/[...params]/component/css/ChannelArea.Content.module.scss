@@ -1,0 +1,111 @@
+.content {
+  display: flex;
+  flex: 1;
+  // flex: 1 0 auto;
+  background-color: rgb(49, 51, 56);
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+
+    .chatListScroller {
+      flex: 1 1 auto;
+      overflow: auto;
+
+      // background-color: rgb(49, 51, 56);
+      &::-webkit-scrollbar {
+        width: 8px;
+        border-radius: 5px;
+        background-color: rgb(44, 44, 46);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        // border: 1px solid rgb(105, 105, 110);
+        border-radius: 5px;
+        background-color: rgb(27, 27, 32);
+      }
+
+
+    }
+
+
+
+  }
+
+  .memberList {
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    background-color: rgb(39, 41, 45);
+
+    .memberStatus {
+      display: flex;
+      padding: 0px 5px 0px 5px;
+      margin: 16px 10px 3px 10px;
+      font-size: 12px;
+      font-weight: 500;
+      color: rgb(159, 165, 177);
+
+
+    }
+
+    .itemMember_offline {
+
+      opacity: 0.5;
+
+      &:hover {
+
+        opacity: 1;
+      }
+    }
+
+    .itemMember,
+    .itemMember_offline {
+      display: flex;
+      align-items: center;
+      border-radius: 5px;
+      margin: 0px 10px 0px 10px;
+      padding: 5px 8px 5px 8px;
+      color: rgb(159, 165, 177);
+      font-size: 17px;
+
+      &:hover {
+        background-color: rgb(55, 55, 61);
+      }
+
+      .offline {
+        background-color: black;
+        opacity: 0.3;
+      }
+
+      .profile {
+        width: 32px;
+        height: 32px;
+        border-radius: 70%;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .nickname {
+        flex: 1 0 auto;
+        margin: 0 0 0 12px;
+      }
+
+    }
+  }
+}
+
+
+.chatList {
+  flex: 1 1 auto;
+  height: 0;
+  display: flex;
+  flex-direction: column;
+  // overflow: auto;
+}
