@@ -48,13 +48,13 @@ export default function ServerListLayout({ children }) {
       const { protocol, hostname } = window.location;
       const serverUrl = process.env.NEXT_PUBLIC_SERVER_PORT ?
         `${protocol}//${hostname}:${process.env.NEXT_PUBLIC_SERVER_PORT}` :
-        // process.env.NEXT_PUBLIC_SERVER_URL :
         "http://localhost:3040";
 
       try {
         const response = await axios.get(serverUrl + '/api/server', { withCredentials: true })
 
-        const socket = io(process.env.NEXT_PUBLIC_WEBSOCKET_URL, { transports: ["websocket"] });
+        const socket = io(`${protocol}//${hostname}:${process.env.NEXT_PUBLIC_WEBSOCKET_PORT}`, { transports: ["websocket"] });
+        // const socket = io("http://localhost:3030", { transports: ["websocket"] });
         socket.connect();
 
         // 소켓 연결 시 현재채팅 채널로 join
