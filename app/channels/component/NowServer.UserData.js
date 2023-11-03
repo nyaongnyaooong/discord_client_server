@@ -388,18 +388,17 @@ const UserData = ({ coreData, userStatus, setUserStatus }) => {
       <div className={styles.userProfile}>
 
         <div className={styles.userImgWrapper}>
-          <img src={userInfo.avatar || 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdSZ2nX%2Fbtsy3gA9t3F%2F5M0ObZONRlqxqwzfQjOHlk%2Fimg.png'} />
+          <img src={userInfo?.avatar || 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdSZ2nX%2Fbtsy3gA9t3F%2F5M0ObZONRlqxqwzfQjOHlk%2Fimg.png'} />
         </div>
 
         <div className={styles.textArea}>
-          <div className={styles.userName}>{userInfo.nickname}</div>
+          <div className={styles.userName}>{userInfo?.nickname}</div>
           <div className={styles.userStatus}>온라인</div>
         </div>
 
       </div>
 
       <div className={styles.userControl}>
-
         <div className={`${styles.setMic} ${styles.icon}`} onClick={handleMic}>
           {
             userStatus.mic ?

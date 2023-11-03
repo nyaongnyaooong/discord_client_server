@@ -52,17 +52,28 @@ const Content = () => {
       });
 
       socket.on('online', (onlineUserId) => {
-        console.log('sm', serverMembers)
+        // 유저가 접속함 -> onlineUserId
+        console.log('online', serverMembers)
         const onlineUser = serverMembers.filter(member => member.user_Id === onlineUserId);
         if (onlineUser.length === 0) return
 
         const newOfflineUsers = members.offline.filter(user => user.user_Id !== onlineUserId);
 
-        const newOnlineUsers = [...members.online];
-        newOnlineUsers.push(onlineUser[0])
+        const newOfflineUsersObject = {};
+        newOfflineUsers.forEach(user => {
+          newOfflineUsersObject[user.user_Id] = user;
+        })
+
+        const newOnlineMembers = [];
+        serverMembers.forEach(serverMember => {
+          if(!newOfflineUsersObject[serverMember.user_Id]) newOnlineMembers.push(serverMember)
+        })
+
+        // const newOnlineUsers = [...members.online];
+        // newOnlineUsers.push(onlineUser[0])
 
         setMembers({
-          online: newOnlineUsers,
+          online: newOnlineMembers,
           offline: newOfflineUsers
         })
 
@@ -70,17 +81,27 @@ const Content = () => {
 
       socket.on('offline', (offlineUserId) => {
         // socket?.emit('reqLoginMember', serverMembers);
-        console.log('sm', serverMembers)
+        console.log('offline', serverMembers)
         const offlineUser = serverMembers.filter(member => member.user_Id === offlineUserId);
 
         const newOnlineUsers = members.online.filter(user => user.user_Id !== offlineUserId);
 
-        const newOfflineUsers = [...members.offline];
-        newOfflineUsers.push(offlineUser[0])
+        const newOnlineUsersObject = {};
+        newOnlineUsers.forEach(user => {
+          newOnlineUsersObject[user.user_Id] = user;
+        })
+
+        const newOfflineMembers = [];
+        serverMembers.forEach(serverMember => {
+          if(!newOnlineUsersObject[serverMember.user_Id]) newOfflineMembers.push(serverMember)
+        })
+
+        // const newOfflineUsers = [...members.offline];
+        // newOfflineUsers.push(offlineUser[0])
 
         setMembers({
           online: newOnlineUsers,
-          offline: newOfflineUsers
+          offline: newOfflineMembers
         })
       });
     }

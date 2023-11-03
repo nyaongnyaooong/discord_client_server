@@ -52,7 +52,7 @@ const Modal = ({ modalInfo, setStates }) => {
           </div>
         </div>
 
-        <div className={styles.itemSelect} onClick={() => setModalPopup('customizeServer')}>
+        <div className={styles.itemSelect} onClick={() => setModalPopup({ page: 'customizeServer' })}>
           <span>직접 만들기</span>
           <svg className={styles.iconArrow} viewBox="0 0 24 24">
             <path d="M16.59 8.59004L12 13.17L7.41 8.59004L6 10L12 16L18 10L16.59 8.59004Z" />
@@ -96,7 +96,7 @@ const Modal = ({ modalInfo, setStates }) => {
               <input name="serverName"></input>
 
               <div className={styles.createButtonArea}>
-                <button type="button" onClick={() => setModalPopup('createServer')}>뒤로 가기</button>
+                <button type="button" onClick={() => setModalPopup({ page: 'createServer' })}>뒤로 가기</button>
                 <button className={styles.create} type="submit">만들기</button>
               </div>
             </div>

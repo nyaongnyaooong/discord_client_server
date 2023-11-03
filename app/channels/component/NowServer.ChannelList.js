@@ -8,7 +8,7 @@ import createPeerConnection from "./function/createPeerConnection";
 import BroadCast from "./NowServer.BroadCast";
 
 
-const ChannelList = ({ coreData, serverId, serverMembers, channelId, channels, voiceParticipants }) => {
+const ChannelList = ({ coreData, serverId, serverMembers, channelId, channels, setChannels, voiceParticipants }) => {
 
   const [modalPopup, setModalPopup] = useState(false);
   const [modalPage, setModalPage] = useState('createChannel');
@@ -242,23 +242,33 @@ const ChannelList = ({ coreData, serverId, serverMembers, channelId, channels, v
   const ModalChannel = () => {
     const [channelType, setChannelType] = useState('text');
     const [noChannelName, setChannelName] = useState(false)
-    console.log(modalPage)
+
     if (modalPage === 'createChannel') {
       const createChannel = async (event) => {
         event.preventDefault();
-        const channelName = event.target?.channelName.value
+
+        const channelName = event.target?.channelName.value;
 
         const { protocol, hostname } = window.location;
         const serverUrl = process.env.NEXT_PUBLIC_SERVER_PORT ?
           `${protocol}//${hostname}:${process.env.NEXT_PUBLIC_SERVER_PORT}` :
           "http://localhost:3040";
         try {
-          if (!channelName) throw new Error('no channelName')
+          if (!channelName) throw new Error('no channelName');
           const response = await axios.post(serverUrl + '/api/channel', { serverId, name: channelName, type: channelType }, { withCredentials: true })
 
-          setModalPopup(false)
+          const newChannels = {
+            chat: [...channels.chat],
+            voice: [...channels.voice]
+          }
+
+          if (channelType === 'text') newChannels.chat.push(response.data);
+          if (channelType === 'voice') newChannels.voice.push(response.data);
+
+          setChannels(newChannels);
+          setModalPopup(false);
         } catch (err) {
-          if (err.message === 'no channelName') setChannelName(true)
+          if (err.message === 'no channelName') setChannelName(true);
         }
 
       }
@@ -420,7 +430,7 @@ const ChannelList = ({ coreData, serverId, serverMembers, channelId, channels, v
       {
         voiceRoomUsers.length ?
           (
-            <BroadCast clickFunction={closePeer}/>
+            <BroadCast clickFunction={closePeer} />
             // <div className={styles.broadCast}>
             //   <div className={styles.buttonExitCall} onClick={closePeer}>
             //     <svg role="img" width="20" height="20" viewBox="0 0 24 24">

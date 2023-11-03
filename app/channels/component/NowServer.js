@@ -71,7 +71,7 @@ const NowServer = ({ coreData, setCoreData, serverId, channelId, serverName }) =
         <Header>{serverName}</Header>
         <DivideLine direction='column' />
 
-        <ChannelList coreData={coreData} serverMembers={serverMembers} serverId={serverId} channelId={channelId} channels={channels} voiceParticipants={voiceParticipants}></ChannelList>
+        <ChannelList coreData={coreData} serverMembers={serverMembers} serverId={serverId} channelId={channelId} channels={channels} setChannels={setChannels} voiceParticipants={voiceParticipants}></ChannelList>
 
         {/* <BroadCast></BroadCast> */}
         <DivideLine direction='column' backgroundColor='rgb(49, 51, 56)' />
@@ -80,5 +80,4 @@ const NowServer = ({ coreData, setCoreData, serverId, channelId, serverName }) =
     ) :
     <></>
 }
-
 export default NowServer;

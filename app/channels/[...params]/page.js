@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 
 import ChannelArea from "./component/ChannelArea";
+import DmArea from "./component/DmArea";
 
 const Channels = () => {
   const { params } = useParams();
@@ -12,8 +13,10 @@ const Channels = () => {
 
   const [memberList, setMemberList] = useState([]);
 
-
-  if (isNaN(serverId) || isNaN(channelId)) return (
+  if (serverId === 'me') return (
+    <DmArea></DmArea>
+  )
+  else if (isNaN(serverId) || isNaN(channelId)) return (
     <div>
 
     </div>
@@ -22,8 +25,6 @@ const Channels = () => {
   else return (
     <ChannelArea serverId={serverId} channelId={channelId} list={memberList}></ChannelArea>
   )
-
-
 }
 
 export default Channels;

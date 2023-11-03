@@ -9,7 +9,11 @@ const Main = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3040";
+      const { protocol, hostname } = window.location;
+      const serverUrl = process.env.NEXT_PUBLIC_SERVER_PORT ?
+        `${protocol}//${hostname}:${process.env.NEXT_PUBLIC_SERVER_PORT}` :
+        "http://localhost:3040";
+      // const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3040";
 
       try {
         await axios.get(serverUrl + '/user/auth', { withCredentials: true });

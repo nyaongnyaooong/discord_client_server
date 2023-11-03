@@ -1,0 +1,146 @@
+.dm {
+  display: flex;
+  flex-direction: column;
+  min-width: 240px;
+  height: 100%;
+  // background-color: rgb(30, 31, 34);
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  background-color: rgb(43, 45, 49);
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: rgb(57, 60, 66);
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 16px;
+    color: azure;
+  }
+}
+
+.dmContent {
+  display: flex;
+  flex-direction: column;
+  min-width: 240px;
+  height: 100%;
+  background-color: rgb(43, 45, 49);
+  color: azure;
+  // background-color: rgb(30, 31, 34);
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px 0 10px;
+
+    .text {
+      font-size: 12px;
+    }
+
+    .icon {
+      .addDm {
+        width: 18px;
+        height: 18px;
+
+        polygon {
+          fill: rgb(159, 165, 177);
+        }
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.item {
+  padding: 0 10px 0 10px;
+
+  .avatar {}
+
+  .nickname {
+    color: azure;
+
+  }
+}
+
+.ModalArea {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+
+  .bgDark {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .controlArea {
+    width: 440px;
+    width: 440px;
+    z-index: 1;
+
+    .setArea {
+      padding: 18px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      background-color: rgb(49, 51, 56);
+
+      h2 {
+        text-align: center;
+        font-size: 24px;
+        margin: 5px 0 8px 0;
+      }
+
+      h3 {
+        text-align: center;
+        font-size: 16px;
+        font-weight: 400;
+        margin: 0 0 24px 0;
+      }
+
+      .item {
+        margin-top: 10px;
+
+        .textWrapper {
+          font-size: 12px;
+          margin-bottom: 5px;
+        }
+
+        .inputWrapper {
+          input {
+            padding: 0 0 0 7px;
+            height: 40px;
+            border-radius: 3px;
+            border: 0;
+            width: 100%;
+            background-color: rgb(28, 28, 32);
+            color: rgb(181, 186, 193);
+            font-size: 16px;
+
+            &:focus {
+              outline: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

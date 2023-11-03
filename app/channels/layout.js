@@ -5,6 +5,7 @@ import axios, { AxiosError } from "axios";
 import styles from "./layout.module.scss";
 import ServerList from "./component/ServerList";
 import NowServer from "./component/NowServer";
+import Dm from "./component/Dm";
 import { useParams, useRouter } from "next/navigation";
 import { io } from "socket.io-client";
 
@@ -53,7 +54,7 @@ export default function ServerListLayout({ children }) {
       try {
         const response = await axios.get(serverUrl + '/api/server', { withCredentials: true })
 
-        const socket = io(`${protocol}//${hostname}:${process.env.NEXT_PUBLIC_WEBSOCKET_PORT}`, { transports: ["websocket"] });
+        const socket = io(`${protocol}//${hostname}:${process.env.NEXT_PUBLIC_SOCKET_PORT}`, { transports: ["websocket"] });
         // const socket = io("http://localhost:3030", { transports: ["websocket"] });
         socket.connect();
 
@@ -87,8 +88,7 @@ export default function ServerListLayout({ children }) {
     }
   }, [])
 
-
-  return (
+  if (!isNaN(+serverId)) return (
     <div className={styles.root}>
       {
         serverList[0] === false ?
@@ -98,13 +98,36 @@ export default function ServerListLayout({ children }) {
             </div>
           ) :
           (
-            <AppContext.Provider value={{coreData, setCoreData}}>
+            <AppContext.Provider value={{ coreData, setCoreData }}>
               <ServerList list={serverList} setList={setServerList}></ServerList>
-              {
-                isNaN(+serverId) ?
-                  <></> :
-                  <NowServer coreData={coreData} setCoreData={setCoreData} serverId={serverId} channelId={channelId} serverName={currentServerName} ></NowServer>
-              }
+              <NowServer
+                coreData={coreData}
+                setCoreData={setCoreData}
+                serverId={serverId}
+                channelId={channelId}
+                serverName={currentServerName}>
+              </NowServer>
+              {children}
+            </AppContext.Provider>
+          )
+      }
+    </div>
+  )
+  else if (serverId === 'me') return (
+    <div className={styles.root}>
+      {
+        serverList[0] === false ?
+          (
+            <div>
+              로딩중
+            </div>
+          ) :
+          (
+            <AppContext.Provider value={{ coreData, setCoreData }}>
+              <ServerList list={serverList} setList={setServerList}></ServerList>
+              <Dm
+                coreData={coreData}
+              ></Dm>
               {children}
             </AppContext.Provider>
           )
