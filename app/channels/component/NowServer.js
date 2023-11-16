@@ -1,5 +1,6 @@
 import styles from "./css/NowServer.module.scss";
 import { useEffect, useState } from "react";
+import { useParams, useRouter } from 'next/navigation';
 import axios, { AxiosError } from "axios";
 import Header from './NowServer.Header';
 import DivideLine from './NowServer.DivideLine';
@@ -9,6 +10,9 @@ import UserData from './NowServer.UserData';
 
 // 특정 서버 접속
 const NowServer = ({ coreData, setCoreData, serverId, channelId, serverName }) => {
+  const router = useRouter();
+  // const { params } = useParams();
+  // const [serverId, channelId] = params;
 
   const { socket, userInfo } = coreData;
 
@@ -46,8 +50,11 @@ const NowServer = ({ coreData, setCoreData, serverId, channelId, serverName }) =
         // 접속한 서버의 채널 리스트를 요청
         const resChannels = await axios.get(serverUrl + '/api/channel?serverId=' + serverId, { withCredentials: true })
         const newChannelList = resChannels?.data;
+
+        // 채널 리스트 표시
         setChannels(newChannelList)
 
+        // 전체 서버 멤버 리스트 요청
         const resServerMembers = await axios.get(serverUrl + '/api/server/users?serverId=' + serverId, { withCredentials: true })
         setCoreData((oldData) => {
           const newData = { ...oldData, serverMembers };
@@ -57,6 +64,10 @@ const NowServer = ({ coreData, setCoreData, serverId, channelId, serverName }) =
         // setServerMembers(resServerMembers?.data)
 
         setIsLoad(true)
+
+        // 가장 상단 채널채팅으로 자동 접속
+        const firstChannel = newChannelList.chat[0].id;
+        if (!channelId && firstChannel) router.push(`/channels/${serverId}/${firstChannel}`);
       } catch (err) {
 
         // if (err instanceof AxiosError) router.push('/login')

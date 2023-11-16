@@ -222,6 +222,7 @@
       height: 32px;
 
       &:hover {
+        cursor: pointer;
         background-color: rgb(60, 60, 65);
       }
     }
@@ -333,7 +334,12 @@
             color: white;
             background-color: royalblue;
             font-size: 15px;
-            padding: 3px;
+            border-radius: 3px;
+            padding: 5px 12px 5px 12px;
+
+            &:hover {
+              cursor: pointer;
+            }
           }
         }
       }
@@ -346,30 +352,48 @@
 
         .info {
           background-color: rgb(45, 45, 49);
-          padding: 15px;
+          padding: 5px;
 
 
-          .nickname {
+          .item {
             display: flex;
+            margin: 10px;
 
             .textArea {
               display: flex;
+              flex: 1 0 auto;
               flex-direction: column;
 
-              span {
-                display: flex;
+              .textTitle {
+                font-size: 12px;
+              }
+
+              .textContent {
+                font-size: 14px;
+                color: aliceblue;
               }
             }
-          }
 
-          .email {
-            display: flex;
-
-            .textArea {
+            .buttonArea {
               display: flex;
-              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+
+              .button {
+                padding: 5px 12px 5px 12px;
+                border-radius: 3px;
+                font-size: 14px;
+                background-color: rgb(80, 80, 90);
+                color: aliceblue;
+
+                &:hover {
+                  cursor: pointer;
+                }
+              }
+
             }
           }
+
         }
       }
     }

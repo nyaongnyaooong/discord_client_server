@@ -5,7 +5,7 @@ import styles from "../css/ChannelArea.Content.ChatList.module.scss"
 // 채팅 리스트 내 한줄 한줄 컴포넌트
 const Chat = ({ data, children, createdAt, withProfile }) => {
   const { type } = data;
-  const { nickname: sender, avatar } = data.user;
+  const { nickname: sender, avatar } = data.sender;
 
   let chatContent;
   if (type === 'image') {
@@ -63,7 +63,7 @@ const ChatList = ({ children }) => {
   const now = new Date();
 
   const ChatListDom = children.map((e, i) => {
-    const createdTime = new Date(e.createdAt);
+    const createdTime = new Date(e.sendAt);
 
     let viewTime = (createdTime.getFullYear() === now.getFullYear() && createdTime.getMonth() === now.getMonth() && createdTime.getDate() === now.getDate()) ?
       '오늘' :

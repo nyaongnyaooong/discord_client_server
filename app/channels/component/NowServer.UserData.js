@@ -23,8 +23,6 @@ const UserData = ({ coreData, userStatus, setUserStatus }) => {
 
   const SetUpModal = () => {
     const [page, setPage] = useState(0);
-    const [avatarImgSrc, setAvatarImgSrc] = useState(userInfo.avatar || 'https://avatars.githubusercontent.com/u/68260365?v=4');
-    const [newData, setNewData] = useState();
 
     const [updatePwModal, setUpdatePwModal] = useState(false);
 
@@ -106,72 +104,121 @@ const UserData = ({ coreData, userStatus, setUserStatus }) => {
     }
 
     const Content = () => {
-      const uploadFile = (event) => {
-        const formData = new FormData();
-        formData.append("file", event.target.files[0]);
-        console.log(event.target.files[0])
-        console.log(formData)
-
-
-        const reader = new FileReader();
-        reader.readAsDataURL(event.target.files[0]);
-
-        reader.onload = (event2) => {
-          const img = new Image();
-          img.src = event2.target.result;
-
-          img.onload = () => {
-            // canvas  생성
-            const canvas = document.createElement("canvas");
-
-            // 원본 이미지의 비율 유지하면서 한쪽의 사이즈를 150px로 줄임
-            if (img.height > img.width) {
-              canvas.width = 150;
-              canvas.height = Math.floor(img.height / img.width * canvas.width)
-            } else {
-              canvas.height = 150;
-              canvas.width = Math.floor(img.width / img.height * canvas.height)
-            }
-            // canvas에 이미지를 담음
-            canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
-
-            // canvas의 dataurl를 blob(file)화
-            // 확장자 png로
-            const dataUrl = canvas.toDataURL("image/png");
-            const byteString = atob(dataUrl.split(',')[1]);
-            const mimeString = dataUrl.split(',')[0].split(':')[1].split(';')[0];
-            const ab = new ArrayBuffer(byteString.length);
-            const ia = new Uint8Array(ab);
-            for (let i = 0; i < byteString.length; i++) {
-              ia[i] = byteString.charCodeAt(i);
-            }
-
-            // 리사이징된 Blob 객체
-            const resizedBlob = new Blob([ab], { type: mimeString });
-
-            // blob객체 File로 변환
-            const resizedFile = new File([resizedBlob], 'resized', { type: 'image/png' });
-
-            const reader2 = new FileReader();
-            reader2.readAsDataURL(resizedFile);
-
-            reader2.onload = (event3) => {
-              setNewData({ avatar: resizedFile })
-              setAvatarImgSrc(event3.target.result)
-            }
-
-            // const url = window.URL.createObjectURL(resizedBlob);
-
-            const formData = new FormData();
-            formData.append("file", resizedFile);
-            console.log(resizedFile)
-            console.log(formData)
-          }
-        };
-
-      }
-
       if (page === 1) {
+        const [profileData, setProfileData] = useState({ nickname: userInfo.nickname });
+        const [avatarImgSrc, setAvatarImgSrc] = useState(userInfo.avatar || 'https://avatars.githubusercontent.com/u/68260365?v=4');
+
+        const inputHandle = (e) => {
+          const inputValue = e.target.value;
+
+          setProfileData((prevData) => {
+            const oldData = { ...prevData };
+            console.log('old', oldData)
+            return Object.assign(oldData, { nickname: inputValue });
+          })
+        }
+
+        const uploadFile = (event) => {
+          const formData = new FormData();
+          formData.append("file", event.target.files[0]);
+
+          const reader = new FileReader();
+          reader.readAsDataURL(event.target.files[0]);
+
+          reader.onload = (event2) => {
+            const img = new Image();
+            img.src = event2.target.result;
+
+            img.onload = () => {
+              // canvas  생성
+              const canvas = document.createElement("canvas");
+
+              // 원본 이미지의 비율 유지하면서 한쪽의 사이즈를 150px로 줄임
+              if (img.height > img.width) {
+                canvas.width = 150;
+                canvas.height = Math.floor(img.height / img.width * canvas.width)
+              } else {
+                canvas.height = 150;
+                canvas.width = Math.floor(img.width / img.height * canvas.height)
+              }
+              // canvas에 이미지를 담음
+              canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
+
+              // canvas의 dataurl를 blob(file)화
+              // 확장자 png로
+              const dataUrl = canvas.toDataURL("image/png");
+              const byteString = atob(dataUrl.split(',')[1]);
+              const mimeString = dataUrl.split(',')[0].split(':')[1].split(';')[0];
+              const ab = new ArrayBuffer(byteString.length);
+              const ia = new Uint8Array(ab);
+              for (let i = 0; i < byteString.length; i++) {
+                ia[i] = byteString.charCodeAt(i);
+              }
+
+              // 리사이징된 Blob 객체
+              const resizedBlob = new Blob([ab], { type: mimeString });
+
+              // blob객체 File로 변환
+              const resizedFile = new File([resizedBlob], 'resized', { type: 'image/png' });
+
+              const reader2 = new FileReader();
+              reader2.readAsDataURL(resizedFile);
+
+              reader2.onload = (event3) => {
+                setProfileData((prevData) => {
+                  const oldData = { ...prevData };
+                  return Object.assign(oldData, { avatar: resizedFile });
+                })
+                setAvatarImgSrc(event3.target.result);
+              }
+
+              const formData = new FormData();
+              formData.append("file", resizedFile);
+            }
+          };
+
+        }
+
+        const updateUserProfile = async () => {
+          if (profileData.nickname !== userInfo.nickname) {
+            try {
+              const { protocol, hostname } = window.location;
+              const serverUrl = process.env.NEXT_PUBLIC_SERVER_PORT ?
+                `${protocol}//${hostname}:${process.env.NEXT_PUBLIC_SERVER_PORT}` :
+                "http://localhost:3040";
+              const response = await axios.patch(serverUrl + '/api/user/nickname', {newNickname: profileData.nickname}, {
+                withCredentials: true
+              });
+
+            } catch (err) {
+
+            }
+          }
+
+
+          if (!profileData.avatar) return;
+
+          const formData = new FormData();
+          formData.append("file", profileData.avatar);
+
+          try {
+            const { protocol, hostname } = window.location;
+            const serverUrl = process.env.NEXT_PUBLIC_SERVER_PORT ?
+              `${protocol}//${hostname}:${process.env.NEXT_PUBLIC_SERVER_PORT}` :
+              "http://localhost:3040";
+            const response = await axios.patch(serverUrl + '/api/user/avatar', formData, {
+              headers: {
+                'Content-Type': 'multipart/form-data',
+              },
+              withCredentials: true
+            });
+
+            const imgUrl = response.data
+
+          } catch (err) {
+
+          }
+        }
         return (
           <div className={styles.content}>
             <h2>프로필</h2>
@@ -181,7 +228,7 @@ const UserData = ({ coreData, userStatus, setUserStatus }) => {
                   <div className={styles.text}>
                     <span>별명</span>
                   </div>
-                  <input />
+                  <input value={profileData.nickname} onChange={inputHandle} />
                 </div>
 
                 <div className={styles.item}>
@@ -232,7 +279,7 @@ const UserData = ({ coreData, userStatus, setUserStatus }) => {
               </div>
               <div className={styles.buttonArea}>
                 <div className={styles.buttonUndo} onClick={() => {
-                  setNewData();
+                  setProfileData({ nickname: userInfo.nickname });
                   setAvatarImgSrc('');
                 }}>
                   원상복구
@@ -268,26 +315,36 @@ const UserData = ({ coreData, userStatus, setUserStatus }) => {
                   <span>재아</span>
                 </div>
                 <div className={styles.buttonArea}>
-                  <div className={styles.button}>
+                  <div className={styles.button} onClick={() => setPage(1)}>
                     사용자 프로필 편집
                   </div>
                 </div>
               </div>
               <div className={styles.userInfo}>
                 <div className={styles.info}>
-                  <div className={styles.nickname}>
+                  <div className={styles.item}>
                     <div className={styles.textArea}>
-                      <span>별명</span>
-                      <span>재아</span>
+                      <div className={styles.textTitle}>
+                        닉네임
+                      </div>
+                      <div className={styles.textContent}>
+                        {userInfo.nickname}
+                      </div>
                     </div>
                     <div className={styles.buttonArea}>
-                      <div>수정</div>
+                      <div className={styles.button} onClick={() => setPage(1)}>
+                        수정
+                      </div>
                     </div>
                   </div>
-                  <div className={styles.email}>
+                  <div className={styles.item}>
                     <div className={styles.textArea}>
-                      <span>이메일</span>
-                      <span>test@test.com</span>
+                      <div className={styles.textTitle}>
+                        이메일
+                      </div>
+                      <div className={styles.textContent}>
+                        {userInfo.mail}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -313,30 +370,7 @@ const UserData = ({ coreData, userStatus, setUserStatus }) => {
       }
     }
 
-    const updateUserProfile = async () => {
-      if (!newData) return;
 
-      const formData = new FormData();
-      formData.append("file", newData.avatar);
-
-      try {
-        const { protocol, hostname } = window.location;
-        const serverUrl = process.env.NEXT_PUBLIC_SERVER_PORT ?
-          `${protocol}//${hostname}:${process.env.NEXT_PUBLIC_SERVER_PORT}` :
-          "http://localhost:3040";
-        const response = await axios.patch(serverUrl + '/api/user/avatar', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-          withCredentials: true
-        });
-
-        const imgUrl = response.data
-
-      } catch (err) {
-
-      }
-    }
 
     return (
       <div className={remove ? `${styles.setUpModal} ${styles.animatePopDown}` : `${styles.setUpModal} ${styles.animatePopUp}`}>

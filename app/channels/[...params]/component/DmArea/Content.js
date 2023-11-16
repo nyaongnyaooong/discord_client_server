@@ -4,7 +4,7 @@ import { AppContext } from "../../../layout"
 import { useParams } from "next/navigation";
 import styles from "../css/ChannelArea.Content.module.scss"
 import ChatList from "./Content.ChatList";
-import MessageForm from "../ChannelArea.Content.MessageForm";
+import MessageForm from "./Content.MessageForm";
 
 const Content = () => {
   const [chatList, setChatList] = useState([]);
@@ -12,8 +12,7 @@ const Content = () => {
   const messageEndRef = useRef(null);
 
   const { params } = useParams();
-  const [_, userId] = params;
-  const [serverId, channelId] = params;
+  const [_, targetUserId] = params;
 
   const { coreData } = useContext(AppContext);
   const { socket, userInfo, serverMembers } = coreData;
@@ -24,33 +23,31 @@ const Content = () => {
   }
 
   useEffect(() => {
-    if (socket && channelId) {
-      console.log('id?', channelId)
-      socket?.emit('reqChatHistory', channelId);
+    if (socket && targetUserId) {
+      socket?.emit('reqDmHistory', targetUserId);
     }
-
-  }, [socket, channelId])
-
-  useEffect(() => {
-    if (serverId && socket && serverMembers) {
-      socket?.emit('reqLoginMember', serverMembers);
-    }
-  }, [serverId, socket, serverMembers])
+  }, [socket, targetUserId])
 
   useEffect(() => {
     if (socket) {
-      socket.on('chatHistory', (chatHistory) => {
+      socket.on('dmHistory', (chatHistory) => {
+        console.log('his?', chatHistory)
         setChatList(chatHistory)
       })
     }
 
-    if (socket && channelId) {
-      socket.on('newChat', (newChatData) => {
-        if (channelId === newChatData.channelId) {
-          const newChatListData = [...chatList]
-          newChatListData.push(newChatData.message)
-          setChatList(newChatListData)
-        }
+    if (socket && targetUserId) {
+      console.log(targetUserId)
+      socket.on('newDm', (newChatData) => {
+        console.log('new', newChatData)
+
+        const newChatListData = [...chatList]
+        newChatListData.push(newChatData)
+
+        console.log('new2', newChatListData)
+
+        setChatList(newChatListData)
+
         // scrollerRef.current.scrollIntoView({ behavior: 'smooth' });
         // setTimeout(() => {
         //   const scrollLength = scrollerRef.current?.scrollHeight;
@@ -58,7 +55,14 @@ const Content = () => {
         // }, 200)
       })
     }
-  }, [socket, chatList, channelId])
+
+    return () => {
+      if(socket) {
+        socket.off('dmHistory')
+        socket.off('newDm')
+      }
+    }
+  }, [socket, chatList, targetUserId])
 
   useEffect(() => {
     messageEndRef.current.scrollIntoView({ behavior: 'smooth' });
