@@ -15,14 +15,14 @@ const Main = () => {
   const apiDocsUrl = serverUrl + '/api/docs';
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get(serverUrl + '/api/docs');
-      const docs = response.data;
-    };
-    fetchData();
+    // const fetchData = async () => {
+    //   const response = await axios.get(serverUrl + '/api/docs');
+    //   const docs = response.data;
+    // };
+    // fetchData();
+    router.push(apiDocsUrl);
   }, [])
 
-  router.push(apiDocsUrl);
 
   return (
     <>
