@@ -31,20 +31,17 @@ const Content = () => {
   useEffect(() => {
     if (socket) {
       socket.on('dmHistory', (chatHistory) => {
-        console.log('his?', chatHistory)
+
         setChatList(chatHistory)
       })
     }
 
     if (socket && targetUserId) {
-      console.log(targetUserId)
-      socket.on('newDm', (newChatData) => {
-        console.log('new', newChatData)
 
+      socket.on('newDm', (newChatData) => {
         const newChatListData = [...chatList]
         newChatListData.push(newChatData)
 
-        console.log('new2', newChatListData)
 
         setChatList(newChatListData)
 

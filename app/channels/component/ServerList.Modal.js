@@ -23,7 +23,7 @@ const Modal = ({ modalInfo, setStates }) => {
     try {
       // 서버 생성 요청
       const response = await axios.post(serverUrl + '/api/server', { servername: serverName }, { withCredentials: true })
-      console.log(response.data)
+
       setList(response.data)
       setModalPopup(null);
     } catch (err) {
@@ -241,8 +241,7 @@ const Modal = ({ modalInfo, setStates }) => {
 
                 const formData = new FormData();
                 formData.append("file", resizedFile);
-                console.log(resizedFile)
-                console.log(formData)
+
               }
             };
 
@@ -379,8 +378,7 @@ const Modal = ({ modalInfo, setStates }) => {
         const uploadFile = (event) => {
           const formData = new FormData();
           formData.append("file", event.target.files[0]);
-          console.log(event.target.files[0])
-          console.log(formData)
+
 
 
           const reader = new FileReader();
@@ -434,8 +432,7 @@ const Modal = ({ modalInfo, setStates }) => {
 
               const formData = new FormData();
               formData.append("file", resizedFile);
-              console.log(resizedFile)
-              console.log(formData)
+
             }
           };
 

@@ -82,7 +82,6 @@ const ChannelList = ({ coreData, serverId, serverMembers, channelId, channels, s
       // 보이스 채널 입장시 실행 함수
       const reqJoinVoiceChannel = async () => {
         const { channelId } = props;
-        console.log(serverId, channelId)
 
         // 1. 오디오 스트림 생성
         const audioStream = await navigator.mediaDevices.getUserMedia({ video: false, audio: true, });
@@ -90,7 +89,7 @@ const ChannelList = ({ coreData, serverId, serverMembers, channelId, channels, s
 
         // 2. 보이스 채널 입장 요청
         socket.emit('joinVoice', { serverId, channelId });
-        console.log('join?')
+
         // 3. 입장요청이 받아들여지면 서버는 입장한 룸의 클라이언트 리스트를 보내줌
         socket.on('voiceMembers', async (voiceMembers) => {
           // 각각의 클라이언트id 값으로 peer connection을 생성함
@@ -154,9 +153,9 @@ const ChannelList = ({ coreData, serverId, serverMembers, channelId, channels, s
           try {
             // answer를 RemoteDescription으로 설정
             await connections[sender].setRemoteDescription(answer);
-            console.log(connections[sender])
+
           } catch (err) {
-            console.log('answer fail', err)
+
           }
         });
 
@@ -165,7 +164,7 @@ const ChannelList = ({ coreData, serverId, serverMembers, channelId, channels, s
           try {
             await connections[sender].addIceCandidate(candidate);
           } catch (err) {
-            console.log('candidate fail2', err)
+
           }
 
         });
@@ -343,10 +342,9 @@ const ChannelList = ({ coreData, serverId, serverMembers, channelId, channels, s
             "http://localhost:3040";
 
           try {
-            console.log(serverUrl, serverId)
+
             const response = await axios.post(serverUrl + '/api/server/invite', { serverId }, { withCredentials: true })
-            console.log('send?')
-            console.log(response.data)
+
             setInviteCode(`${window.location.origin}/join/${response.data}`)
           } catch (err) {
             if (err.message === 'no channelName') setChannelName(true)
@@ -415,7 +413,7 @@ const ChannelList = ({ coreData, serverId, serverMembers, channelId, channels, s
 
         {
           Object.keys(voiceComponent).map(e => {
-            console.log(e)
+
             return e
           })
         }

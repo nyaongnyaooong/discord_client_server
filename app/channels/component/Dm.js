@@ -25,7 +25,7 @@ const Dm = ({ coreData }) => {
         const req = await axios.get(serverUrl + '/api/dm/user/list', { withCredentials: true });
 
         const userList = req.data;
-        console.log(userList)
+
         setDmUsers(req.data);
       } catch (err) {
 

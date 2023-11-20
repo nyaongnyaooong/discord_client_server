@@ -7,7 +7,6 @@ import styles from "./css/ServerList.module.scss"
 import Modal from "./ServerList.Modal"
 
 const ServerMark = ({ serverInfo, popContext, setPopContext }) => {
-  console.log(serverInfo)
   const serverName = serverInfo.name;
   const avatar = serverInfo.avatar;
   const hrefUrl = '/channels/' + serverInfo.id;
@@ -16,7 +15,6 @@ const ServerMark = ({ serverInfo, popContext, setPopContext }) => {
     event.preventDefault();
 
     const { clientX, clientY } = event;
-    console.log(event)
     setPopContext({ pos: { x: clientX, y: clientY }, serverId: serverInfo.id })
   }
 

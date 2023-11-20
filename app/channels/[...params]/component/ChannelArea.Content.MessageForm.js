@@ -17,7 +17,6 @@ const MessageForm = ({ chatListData, stateSetter, scrollerRef }) => {
 
   const sendMessage = (event) => {
     event.preventDefault();
-    console.log(params)
 
     const chatSocketDto = {
       sender_Id: userInfo.id,
@@ -63,7 +62,6 @@ const MessageForm = ({ chatListData, stateSetter, scrollerRef }) => {
       }
       socket.emit('sendChat', chatSocketDto);
 
-      console.log(imgUrl)
     } catch (err) {
 
     }

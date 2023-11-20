@@ -24,7 +24,6 @@ const Content = () => {
 
   useEffect(() => {
     if (socket && channelId) {
-      console.log('id?', channelId)
       socket?.emit('reqChatHistory', channelId);
     }
 
@@ -34,7 +33,6 @@ const Content = () => {
 
     if (socket && serverMembers) {
       socket?.on('onlineUsers', ({ onlineUsers }) => {
-        console.log(serverMembers)
         // Map 객체화
         const isUserOnline = {};
         onlineUsers.forEach(onlineUser => {
@@ -53,7 +51,6 @@ const Content = () => {
 
       socket.on('online', (onlineUserId) => {
         // 유저가 접속함 -> onlineUserId
-        console.log('online', serverMembers)
         const onlineUser = serverMembers.filter(member => member.user_Id === onlineUserId);
         if (onlineUser.length === 0) return
 
@@ -81,7 +78,6 @@ const Content = () => {
 
       socket.on('offline', (offlineUserId) => {
         // socket?.emit('reqLoginMember', serverMembers);
-        console.log('offline', serverMembers)
         const offlineUser = serverMembers.filter(member => member.user_Id === offlineUserId);
 
         const newOnlineUsers = members.online.filter(user => user.user_Id !== offlineUserId);
@@ -177,7 +173,6 @@ const Content = () => {
 
         {
           members?.online?.map((member, i) => {
-            console.log(member)
             return (
               <div key={i} className={styles.itemMember}>
                 <div className={styles.profile}>

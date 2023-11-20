@@ -51,8 +51,6 @@ const UserData = ({ coreData, userStatus, setUserStatus }) => {
             { nowPw, newPw },
             { withCredentials: true });
 
-          console.log(response.data)
-
         } catch (err) {
 
         }
@@ -113,7 +111,7 @@ const UserData = ({ coreData, userStatus, setUserStatus }) => {
 
           setProfileData((prevData) => {
             const oldData = { ...prevData };
-            console.log('old', oldData)
+
             return Object.assign(oldData, { nickname: inputValue });
           })
         }
