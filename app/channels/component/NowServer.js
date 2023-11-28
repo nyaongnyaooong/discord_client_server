@@ -85,7 +85,7 @@ const NowServer = ({ coreData, setCoreData, serverId, channelId, serverName }) =
         <ChannelList coreData={coreData} serverMembers={serverMembers} serverId={serverId} channelId={channelId} channels={channels} setChannels={setChannels} voiceParticipants={voiceParticipants}></ChannelList>
 
         {/* <BroadCast></BroadCast> */}
-        <DivideLine direction='column' backgroundColor='rgb(49, 51, 56)' />
+        {/* <DivideLine direction='column' backgroundColor='rgb(49, 51, 56)' /> */}
         <UserData coreData={coreData} userStatus={userStatus} setUserStatus={setUserStatus}></UserData>
       </div>
     ) :

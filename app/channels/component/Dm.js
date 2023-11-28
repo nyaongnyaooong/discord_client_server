@@ -39,7 +39,7 @@ const Dm = ({ coreData }) => {
       <Link href={`/channels/me/${children.receiver_Id}`} className={styles.item}>
         <div className={styles.avatarArea}>
           <div className={styles.avatarWrapper}>
-            <img src={children?.sender?.avatar || 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdSZ2nX%2Fbtsy3gA9t3F%2F5M0ObZONRlqxqwzfQjOHlk%2Fimg.png'}>
+            <img src={children?.receiver?.avatar || 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdSZ2nX%2Fbtsy3gA9t3F%2F5M0ObZONRlqxqwzfQjOHlk%2Fimg.png'}>
             </img>
           </div>
         </div>

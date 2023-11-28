@@ -1,9 +1,16 @@
+$channelBg: white;
+// rgb(49, 51, 56);
+$textColor: rgb(120, 120, 180);
+
+
+
 .header {
   display: flex;
   height: 50px;
   padding-left: 10px;
   padding-right: 10px;
-  background-color: rgb(49, 51, 56);
+  background-color: $channelBg;
+  color: $textColor;
 
   .channelTitle {
     display: flex;
@@ -21,7 +28,6 @@
     h2 {
       flex: 1 0 auto;
       font-size: 16px;
-      color: azure;
     }
   }
 

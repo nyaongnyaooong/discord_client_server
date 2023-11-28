@@ -1,3 +1,9 @@
+$channelListBg: rgb(240, 240, 250);
+// background-color: rgb(35, 36, 40);
+$channelItemHoverBg: rgb(220, 220, 230);
+// background-color: rgb(57, 58, 65);
+$textColor: rgb(120, 120, 180);
+
 @keyframes showUp {
   0% {
     opacity: 0;
@@ -60,7 +66,7 @@
   padding-left: 10px;
   padding-right: 10px;
   height: 50px;
-  background-color: rgb(35, 36, 40);
+  background-color: $channelListBg;
 
   .userProfile {
     margin-top: 5px;
@@ -74,7 +80,7 @@
 
     &:hover {
       cursor: pointer;
-      background-color: rgb(57, 58, 65);
+      background-color: $channelItemHoverBg;
     }
 
     .userImgWrapper {
@@ -94,7 +100,7 @@
       display: flex;
       flex: 1 0 auto;
       flex-direction: column;
-      color: azure;
+      color: $textColor;
       margin-left: 5px;
       padding: 3px;
 
@@ -105,7 +111,7 @@
 
       .userStatus {
         font-size: 11px;
-        color: rgb(198, 203, 212);
+        color: $textColor;
 
       }
     }
@@ -132,7 +138,7 @@
 
   &:hover {
     cursor: pointer;
-    background-color: rgb(57, 58, 65);
+    background-color: $channelItemHoverBg;
   }
 
   .svgIcon {
@@ -140,7 +146,6 @@
     align-items: center;
     width: 20px;
     height: 20px;
-
 
     path {
       fill: rgb(191, 195, 204)

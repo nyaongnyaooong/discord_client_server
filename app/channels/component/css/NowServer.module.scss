@@ -1,3 +1,6 @@
+$channelListBg: rgb(240, 240, 250);
+// background-color: rgb(43, 45, 49);
+
 @keyframes popUp {
   0% {
     opacity: 0;
@@ -28,7 +31,7 @@
   justify-content: center;
   align-items: center;
   height: 50px;
-  background-color: rgb(43, 45, 49);
+  background-color: $channelListBg;
   transition: all 0.2s;
 
   &:hover {

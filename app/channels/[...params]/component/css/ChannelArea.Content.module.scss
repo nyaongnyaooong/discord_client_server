@@ -1,8 +1,21 @@
+$channelBg: white;
+// rgb(49, 51, 56);
+$memberListBg: rgb(210, 210, 220);
+// background-color: rgb(39, 41, 45);
+$memberListHoverBg: rgb(230, 230, 240);
+// background-color: rgb(55, 55, 61);
+$scrollBgColor: rgb(200, 200, 210);
+        // background-color: rgb(44, 44, 46);
+$scrollColor: rgb(120, 120, 180);
+// background-color: rgb(27, 27, 32);
+
+$textColor: rgb(120, 120, 180);
+
 .content {
   display: flex;
   flex: 1;
   // flex: 1 0 auto;
-  background-color: rgb(49, 51, 56);
+  background-color: $channelBg;
 
   .main {
     display: flex;
@@ -17,27 +30,22 @@
       &::-webkit-scrollbar {
         width: 8px;
         border-radius: 5px;
-        background-color: rgb(44, 44, 46);
+        background-color: $scrollBgColor;
       }
 
       &::-webkit-scrollbar-thumb {
         // border: 1px solid rgb(105, 105, 110);
         border-radius: 5px;
-        background-color: rgb(27, 27, 32);
+        background-color: $scrollColor;
       }
-
-
     }
-
-
-
   }
 
   .memberList {
     display: flex;
     flex-direction: column;
     width: 240px;
-    background-color: rgb(39, 41, 45);
+    background-color: $memberListBg;
 
     .memberStatus {
       display: flex;
@@ -45,17 +53,13 @@
       margin: 16px 10px 3px 10px;
       font-size: 12px;
       font-weight: 500;
-      color: rgb(159, 165, 177);
-
-
+      color: $textColor;
     }
 
     .itemMember_offline {
-
       opacity: 0.5;
 
       &:hover {
-
         opacity: 1;
       }
     }
@@ -67,11 +71,11 @@
       border-radius: 5px;
       margin: 0px 10px 0px 10px;
       padding: 5px 8px 5px 8px;
-      color: rgb(159, 165, 177);
+      color: $textColor;
       font-size: 17px;
 
       &:hover {
-        background-color: rgb(55, 55, 61);
+        background-color: $memberListHoverBg;
       }
 
       .offline {
@@ -100,7 +104,6 @@
     }
   }
 }
-
 
 .chatList {
   flex: 1 1 auto;

@@ -104,7 +104,7 @@ const UserData = ({ coreData, userStatus, setUserStatus }) => {
     const Content = () => {
       if (page === 1) {
         const [profileData, setProfileData] = useState({ nickname: userInfo.nickname });
-        const [avatarImgSrc, setAvatarImgSrc] = useState(userInfo.avatar || 'https://avatars.githubusercontent.com/u/68260365?v=4');
+        const [avatarImgSrc, setAvatarImgSrc] = useState(userInfo.avatar || 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FsdZ9b%2FbtsyWf4jOsz%2FR03mU0dFgcSdG4KrRK9fck%2Fimg.png');
 
         const inputHandle = (e) => {
           const inputValue = e.target.value;
@@ -264,7 +264,7 @@ const UserData = ({ coreData, userStatus, setUserStatus }) => {
                   <div className={styles.underBanner}>
                     <div className={styles.userInfoArea}>
                       <div className={styles.nicknameArea}>
-                        <div>재아</div>
+                        <div>{userInfo.nickname}</div>
                       </div>
                     </div>
                   </div>
@@ -302,7 +302,7 @@ const UserData = ({ coreData, userStatus, setUserStatus }) => {
                 <div className={styles.avatar}>
                   <div className={styles.imageWrapper}>
                     <div className={styles.image}>
-                      <img src={userInfo.avatar || 'https://avatars.githubusercontent.com/u/68260365?v=4'} />
+                      <img src={userInfo.avatar || 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FsdZ9b%2FbtsyWf4jOsz%2FR03mU0dFgcSdG4KrRK9fck%2Fimg.png'} />
                       <div className={styles.userStatusWrapper}>
                         <div className={styles.userStatus}></div>
                       </div>
@@ -310,7 +310,7 @@ const UserData = ({ coreData, userStatus, setUserStatus }) => {
                   </div>
                 </div>
                 <div className={styles.nickname}>
-                  <span>재아</span>
+                  <span>{userInfo.nickname}</span>
                 </div>
                 <div className={styles.buttonArea}>
                   <div className={styles.button} onClick={() => setPage(1)}>

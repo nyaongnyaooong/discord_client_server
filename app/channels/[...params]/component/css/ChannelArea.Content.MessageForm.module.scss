@@ -1,14 +1,25 @@
+$channelBg: white;
+// rgb(49, 51, 56);
+$textColor: rgb(120, 120, 180);
+$textColor2: rgb(100, 100, 110);
+$divineLineColor: rgb(190, 190, 230);
+
+$messageInputBg: rgb(200, 200, 210);
+// background-color: rgb(56, 58, 64);
+
+
 .messageForm {
   display: flex;
   height: 90px;
-  background-color: rgb(49, 51, 56);
+  background-color: $channelBg;
+  border-top: 1px solid $divineLineColor;
   padding: 10px 20px 0 20px;
 
   .textArea {
     display: flex;
     flex: 1 0 auto;
     height: 40px;
-    background-color: rgb(56, 58, 64);
+    background-color: $messageInputBg;
     border-radius: 5px;
     align-items: center;
 
@@ -53,7 +64,7 @@
         margin: 10px;
         background-color: transparent;
         font-size: 15px;
-        color: rgb(193, 193, 193);
+        color: $textColor2;
 
         &:focus {
           outline: none;

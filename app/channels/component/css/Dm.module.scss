@@ -1,3 +1,11 @@
+$dmListBg: rgb(240, 240, 250);
+// rgb(43, 45, 49);
+$dmItemHoverBg: rgb(220, 220, 230);
+// background-color: rgb(55, 55, 60);
+$textColor: rgb(120, 120, 180);
+
+$divineLineColor: rgb(190, 190, 230);
+
 .dm {
   display: flex;
   flex-direction: column;
@@ -10,18 +18,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50px;
-  background-color: rgb(43, 45, 49);
+  height: 56px;
+  background-color: $dmListBg;
   transition: all 0.2s;
 
   &:hover {
-    background-color: rgb(57, 60, 66);
+    background-color: $dmItemHoverBg;
   }
 
   h1 {
     text-align: center;
     font-size: 16px;
-    color: azure;
+    color: $textColor;
   }
 }
 
@@ -30,8 +38,9 @@
   flex-direction: column;
   min-width: 240px;
   height: 100%;
-  background-color: rgb(43, 45, 49);
-  color: azure;
+  background-color: $dmListBg;
+  color: $textColor;
+  border-bottom: 1px solid $divineLineColor;
   // background-color: rgb(30, 31, 34);
 
   .title {
@@ -72,7 +81,7 @@
 
   &:hover {
     cursor: pointer;
-    background-color: rgb(70, 70, 75);
+    background-color: $dmItemHoverBg;
   }
 
   .avatarArea {
@@ -92,7 +101,7 @@
 
   .textArea {
     margin-left: 8px;
-    color: azure;
+    color: $textColor;
   }
 }
 
