@@ -7,9 +7,10 @@ import styles from "./css/ServerList.module.scss"
 import Modal from "./ServerList.Modal"
 
 const ServerMark = ({ serverInfo, popContext, setPopContext }) => {
-  const serverName = serverInfo.name;
-  const avatar = serverInfo.avatar;
-  const hrefUrl = '/channels/' + serverInfo.id;
+  console.log('info?', serverInfo)
+  const serverName = serverInfo?.name;
+  const avatar = serverInfo?.avatar;
+  const hrefUrl = '/channels/' + serverInfo?.id;
 
   const handleOnContextMenu = (event) => {
     event.preventDefault();
